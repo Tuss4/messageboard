@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Tuss4 Forum {% block subtitle %} {% endblock %}</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="/static/js/test.js"></script>
+		<link rel="stylesheet" type="text/css" href="/static/css/normalize.css" />
+	</head>
+	<body>
+		<div id="header">
+			<h1>Tuss4 Forum</h1>
+		</div>
+		<div id="sub_forum">
+			{% block subforum %}{% endblock %}
+		</div>
+		<div id="content">
+			{% block content %}
+			{% endblock %}
+		</div>
+	</body>
+</html>

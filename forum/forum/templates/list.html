@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<table>
+	{% for c in cats %}
+	<tr>
+		<td>{{ c.name }}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}
