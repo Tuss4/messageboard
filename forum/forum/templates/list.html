@@ -1,10 +1,24 @@
 {% extends "base.html" %}
+{% block subtitle %} - Home {% endblock %}
 {% block content %}
 <table>
 	{% for c in cats %}
 	<tr>
 		<td>{{ c.name }}</td>
 	</tr>
+	{% if c.sub_categories %}
+	<tr>
+		<td>
+			<table>
+				{% for s in c.sub_categories.all %}
+				<tr>
+					<td><p>{{ s.name }}</p>{{ s.description }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</td>
+	</tr>
+	{% endif %}
 	{% endfor %}
 </table>
 {% endblock %}
