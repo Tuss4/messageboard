@@ -1,0 +1,15 @@
+body {
+	text-align: left;
+}
+
+#content fieldset {
+	max-width: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+.forum_data {
+	width: 100%;
+}

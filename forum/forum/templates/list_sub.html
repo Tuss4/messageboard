@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block subtitle %} &gt; {{ sub.parent.name }} &gt; {{ sub.name }}{% endblock %}
+{% block subforum %}<h2><a href="/">Home</a> &gt;<a href="/cat/{{ sub.parent.id }}/">{{ sub.parent.name }}</a> &gt; {{ sub.name }}</h2>{% endblock %}
+{% block content %}
+<fieldset>
+	<legend><h3>Topics</h3></legend>
+	<table class="forum_data">
+		{% for t in topics %}
+		<tr>
+			<td><h4>{{ t.title }}</h4> 
+			by {{ t.author}} on {{ t.date }}<br />
+			{{ t.description }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</fieldset>
+{% endblock %}

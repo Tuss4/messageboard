@@ -1,24 +1,25 @@
 {% extends "base.html" %}
-{% block subtitle %} - Home {% endblock %}
+{% block subtitle %} &gt; Home {% endblock %}
 {% block content %}
-<table>
+<table class="forum_data">
 	{% for c in cats %}
 	<tr>
-		<td>{{ c.name }}</td>
-	</tr>
-	{% if c.sub_categories %}
-	<tr>
-		<td>
+		<td><fieldset>
+			<legend><h2>{{ c.name }}</h2></legend>
 			<table>
-				{% for s in c.sub_categories.all %}
-				<tr>
-					<td><p>{{ s.name }}</p>{{ s.description }}</td>
-				</tr>
+				{% for s in scats %}
+					{% ifequal s.parent c %}
+					<tr>
+						<td><h3><a href="/sub_cat/{{ s.id }}/">{{ s.name }}</a></h3></td>
+					</tr>
+					<tr>
+						<td>{{ s.description }}</td>
+					</tr>
+					{% endifequal %}
 				{% endfor %}
 			</table>
-		</td>
+		</fieldset></td>
 	</tr>
-	{% endif %}
 	{% endfor %}
 </table>
 {% endblock %}

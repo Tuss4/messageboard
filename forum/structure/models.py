@@ -26,9 +26,11 @@ class SubCategory(models.Model):
 
 
 class Topic(models.Model):
-	name = models.CharField(max_length=50)
 	description = models.TextField()
 	parent = models.ForeignKey(SubCategory)
+	title = models.CharField(max_length=100)
+	author = models.ForeignKey(User)
+	date = models.DateTimeField()
 
 	def __unicode__(self):
 		return unicode(self.name)
@@ -38,7 +40,7 @@ class Topic(models.Model):
 
 
 class Post(models.Model):
-	title = models.CharField(max_length=50)
+	title = models.CharField(max_length=100)
 	post = models.TextField()
 	date = models.DateTimeField()
 	author = models.ForeignKey(User)

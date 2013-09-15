@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block subtitle %} &gt; {{ cat.name }} {% endblock %}
+{% block subforum %}<h2> <a href="/">Home</a> &gt; {{ cat.name }} </h2>{% endblock %}
+{% block content %}
+<fieldset>
+	<legend><h2>{{ cat.name }}</h2></legend>
+	<table>
+		{% for s in scat %}
+			<tr>
+				<td><h3><a href="/sub_cat/{{ s.id }}/">{{ s.name }}</a></h3></td>
+			</tr>
+			<tr>
+				<td>{{ s.description }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+</fieldset>
+{% endblock %}
