@@ -1,5 +1,6 @@
 body {
 	text-align: left;
+	background-color: #F7F5D3;
 }
 
 #content {
@@ -19,7 +20,7 @@ a {
 	width: 100%;
 	padding: 5%;
 	border-width: 1%;
-	border-color: #000;
+	border-color: #B1B5A6;
 	border-style: solid;
 }
 
@@ -38,11 +39,22 @@ a {
 
 .user_data {
 	width: 10%;
-	background-color: #CCC;
+	background-color: #ABD8C9;
 }
 
 .topic_title {
-	border-bottom-width: 1%;
+	background-color: #95BA7E;
+	color: #FFEE00;
+}
+
+h1, h2 {
+	color: #95BA7E;
+}
+
+.post_message {
+	margin: 1%;
+	background-color: #95BA7E;
+	border-color: #FFEE00;
 	border-style: solid;
-	border-bottom-color: #000;
+	border-width: 1%;
 }
