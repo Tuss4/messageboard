@@ -5,10 +5,14 @@
 <fieldset>
 	<legend><h3>Topics</h3></legend>
 	<table class="forum_data">
+		<tr>
+			<th>Topic &amp; Description</th>
+			<th>Author</th>
+		</tr>
 		{% for t in topics %}
 		<tr>
-			<td><h4><a href="/topic/{{ t.id }}/">{{ t.title }}</a></h4> 
-			{{ t.description }}</td>
+			<td><a href="/topic/{{ t.id }}/">{{ t.title }}</a>: {{ t.description|safe }}</td>
+			<td>{{ t.author.username }}</td>
 		</tr>
 		{% endfor %}
 	</table>

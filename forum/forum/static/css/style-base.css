@@ -27,6 +27,10 @@ a {
 	vertical-align: top;
 }
 
+.forum_data th {
+	background-color: #CCC;
+}
+
 .forum_data textarea {
 	width: 50%;
 	height: 150%;

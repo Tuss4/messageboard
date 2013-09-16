@@ -61,6 +61,7 @@ def edit_topic(request, id):
 	if request.method == "POST":
 		t.title = request.POST.get('title')
 		t.message = request.POST.get('message')
+		t.description = request.POST.get('message')[0:40] + '...'
 		t.save()
 		return HttpResponseRedirect("/topic/"+id)
 	context = {
