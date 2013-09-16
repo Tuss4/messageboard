@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block subtitle %} &gt; {{ t.parent.parent.name }} &gt; {{ t.parent.name }} &gt; Edit Topic {% endblock %}
+{% block subforum %}<h2>Home &gt; {{ t.parent.parent.name }} &gt; {{ t.parent.name }} &gt; Edit Topic</h2>{% endblock %}
+{% block content %}
+<form action="" method="POST">
+<fieldset>
+	<legend><h3>Edit Topic</h3></legend>
+	<table class="forum_data">
+		<tr>
+			<th><label for="title">Title:</label></th><td><input id="title" name="title" type="text" value="{{ t.title }}" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><textarea name="message">{{ t.message|safe|linebreaks }}</textarea></td>
+		</tr>
+	</table>
+	<p>{% csrf_token %}<button type="submit">Update Topic</button></p>
+</fieldset>
+</form>
+{% endblock %}

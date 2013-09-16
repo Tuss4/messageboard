@@ -45,8 +45,25 @@ def add_topic(request, id):
 
 def view_topic(request, id):
 	count = int(Topic.objects.filter(author=request.user).count()) + int(Post.objects.filter(author=request.user).count())
+	u = False
+	if request.user == Topic.objects.get(id=id).author or request.user.is_superuser():
+		u = True
 	context = {
+		"u": u,
 		"p": count,
 		"t": Topic.objects.get(id=id)
 	}
 	return render(request, "topics/view_topic.html", context)
+
+
+def edit_topic(request, id):
+	t = Topic.objects.get(id=id)
+	if request.method == "POST":
+		t.title = request.POST.get('title')
+		t.message = request.POST.get('message')
+		t.save()
+		return HttpResponseRedirect("/topic/"+id)
+	context = {
+		"t": t
+	}
+	return render(request, "topics/edit_topic.html", context)

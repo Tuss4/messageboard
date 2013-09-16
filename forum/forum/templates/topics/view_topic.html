@@ -22,7 +22,14 @@
 		</td>
 		<td>
 			<table>
-				<tr><td>{{ t.message }}</td></tr>
+				<tr><td>{{ t.message|safe|linebreaks  }}</td></tr>
+				<tr>
+					<td>
+						{% if u %}
+						-<a href="/edit_topic/{{ t.id }}/">Edit Topic</a>
+						{% endif %}
+					</td>
+				</tr>
 			</table>
 		</td>
 	</tr>

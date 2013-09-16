@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 	#Topic URLs
 	url(r'^add_topic/(\d+)/$', 'structure.views.add_topic'),
 	url(r'^topic/(\d+)/$', 'structure.views.view_topic'),
+	url(r'^edit_topic/(\d+)/$', 'structure.views.edit_topic'),
 
     # Examples:
     # url(r'^$', 'forum.views.home', name='home'),
