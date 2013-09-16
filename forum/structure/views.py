@@ -67,3 +67,8 @@ def edit_topic(request, id):
 		"t": t
 	}
 	return render(request, "topics/edit_topic.html", context)
+
+
+#Post views
+def new_post(request, id):
+	return HttpResponse("Raagh!")
