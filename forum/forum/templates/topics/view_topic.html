@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block subtitle %} &gt; {{ t.title }} {% endblock %}
-{% block subforum %}<h2>Home &gt; {{ t.parent.parent.name }} &gt; {{ t.parent.name }} &gt; {{ t.title }}</h2>{% endblock %}
+{% block subforum %}<h2><a href="/">Home</a> &gt; <a href="/cat/{{ t.parent.parent.id }}/">{{ t.parent.parent.name }}</a> &gt; <a href="/sub_cat/{{ t.parent.id }}/">{{ t.parent.name }}</a> &gt; {{ t.title }}</h2>{% endblock %}
 {% block content %}
 <table class="forum_data">
 	<tr>
