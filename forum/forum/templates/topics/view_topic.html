@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block subtitle %} &gt; {{ t.title }} {% endblock %}
+{% block subforum %}<h2>Home &gt; {{ t.parent.parent.name }} &gt; {{ t.parent.name }} &gt; {{ t.title }}</h2>{% endblock %}
+{% block content %}
+<table class="forum_data">
+	<tr>
+		<td colspan="2" class="topic_title"><h3>{{ t.title }}</h3></td>
+	</tr>
+	<tr>
+		<td class="user_data">
+			<table>
+				<tr>
+					<td>{{ t.author.username }}</td>
+				</tr>
+				<tr>
+					<td>{{ t.date }}</td>
+				</tr>
+				<tr>
+					<td>Posts: {{ p }}</td>
+				</tr>
+			</table>
+		</td>
+		<td>
+			<table>
+				<tr><td>{{ t.message }}</td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+{% endblock %}

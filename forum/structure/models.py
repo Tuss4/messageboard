@@ -31,9 +31,10 @@ class Topic(models.Model):
 	title = models.CharField(max_length=100)
 	author = models.ForeignKey(User)
 	date = models.DateTimeField()
+	message = models.TextField()
 
 	def __unicode__(self):
-		return unicode(self.name)
+		return unicode(self.title)
 
 	class Meta:
 		ordering = ["id"]

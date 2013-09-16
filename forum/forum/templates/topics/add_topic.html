@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block subtitle %} &gt; {{ sub.parent.name }} &gt; {{ sub.name }} &gt; New Topic {% endblock %}
+{% block subforum %}<h2>Home &gt; {{ sub.parent.name }} &gt; {{ sub.name }} &gt; New Topic</h2>{% endblock %}
+{% block content %}
+<form action="" method="POST">
+<fieldset>
+	<legend><h3>New Topic</h3></legend>
+	<table class="forum_data">
+		<tr>
+			<th><label for="title">Title:</label></th><td><input id="title" name="title" type="text" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><textarea name="message"></textarea></td>
+		</tr>
+	</table>
+	<p>{% csrf_token %}<button type="submit">Post New Topic</button></p>
+</fieldset>
+</form>
+{% endblock %}

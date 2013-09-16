@@ -2,6 +2,11 @@ body {
 	text-align: left;
 }
 
+#content {
+	margin-left: 10%;
+	margin-right: 10%;	
+}
+
 #content fieldset {
 	max-width: 100%;
 }
@@ -12,4 +17,28 @@ a {
 
 .forum_data {
 	width: 100%;
+	padding: 5%;
+	border-width: 1%;
+	border-color: #000;
+	border-style: solid;
+}
+
+.forum_data td, th {
+	vertical-align: top;
+}
+
+.forum_data textarea {
+	width: 50%;
+	height: 150%;
+}
+
+.user_data {
+	width: 10%;
+	background-color: #CCC;
+}
+
+.topic_title {
+	border-bottom-width: 1%;
+	border-style: solid;
+	border-bottom-color: #000;
 }

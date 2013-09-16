@@ -7,8 +7,13 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 	url(r'^$', 'forum.views.main'),
-	url(r'^sub_cat/(\d+)/$', 'structure.views.view_subcat'),
 	url(r'^cat/(\d+)/$', 'structure.views.view_cat'),
+	url(r'^sub_cat/(\d+)/$', 'structure.views.view_subcat'),
+
+	#Topic URLs
+	url(r'^add_topic/(\d+)/$', 'structure.views.add_topic'),
+	url(r'^topic/(\d+)/$', 'structure.views.view_topic'),
+
     # Examples:
     # url(r'^$', 'forum.views.home', name='home'),
     # url(r'^forum/', include('forum.foo.urls')),

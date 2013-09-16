@@ -14,4 +14,7 @@
 		{% endfor %}
 	</table>
 </fieldset>
+{% if u %}
+<p><a href="/add_topic/{{ sub.id }}/">Add New Topic</a></p>
+{% endif %}
 {% endblock %}
