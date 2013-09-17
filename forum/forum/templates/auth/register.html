@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block subtitle %} &gt; Register {% endblock %}
+{% block subforum %}<h2>Home &gt; Register</h2>{% endblock %}
+{% block content %}
+<form action="" method="POST">
+	<table class="forum_data">
+		<tr>
+			<td><label for="user">Username: </label></td><td><input id="user" name="user" type="text" /></td>
+		</tr>
+		<tr>
+			<td><label for="pass">Password: </label></td><td><input id="pass" name="pass" type="password" /></td>
+		</tr>
+		<tr>
+			<td><label for="email">Email: </label></td><td><input id="email" name="email" type="text" /></td>
+		</tr>
+		{% csrf_token %}
+	</table>
+	<br />
+	<button type="submit">Register</button>
+</form>
+{% endblock %}

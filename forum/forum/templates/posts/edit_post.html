@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block subtitle %} &gt; {{ p.topic.parent.parent.name }} &gt; {{ p.topic.parent.name }} &gt; Edit Post {% endblock %}
+{% block subforum %}<h2>Home &gt; {{ p.topic.parent.parent.name }} &gt; {{ p.topic.parent.name }} &gt; Edit Post</h2>{% endblock %}
+{% block content %}
+<form action="" method="POST">
+<fieldset>
+	<legend><h3>Edit Post</h3></legend>
+	<table class="forum_data">
+		<tr>
+			<td></td>
+			<td><textarea name="message">{{ p.post|safe|linebreaks }}</textarea></td>
+		</tr>
+	</table>
+	<p>{% csrf_token %}<button type="submit">Update Post</button></p>
+</fieldset>
+</form>
+{% endblock %}

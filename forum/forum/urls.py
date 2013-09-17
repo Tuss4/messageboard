@@ -12,9 +12,17 @@ urlpatterns = patterns('',
 
 	#Topic URLs
 	url(r'^add_topic/(\d+)/$', 'structure.views.add_topic'),
-	url(r'^topic/(\d+)/$', 'structure.views.view_topic'),
+	url(r'^topic/(\d+)/', 'structure.views.view_topic'),
 	url(r'^edit_topic/(\d+)/$', 'structure.views.edit_topic'),
 
+	#Post URLs
+	url(r'^edit_post/(\d+)/$', 'structure.views.edit_post'),
+
+	#Auth URLs
+	url(r'^login/$', 'forum.views.login'),
+	url(r'^logout/$', 'forum.views.logout'),
+	url(r'^register/$', 'forum.views.register'),
+	
     # Examples:
     # url(r'^$', 'forum.views.home', name='home'),
     # url(r'^forum/', include('forum.foo.urls')),

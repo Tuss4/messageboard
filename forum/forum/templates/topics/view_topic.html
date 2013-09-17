@@ -3,8 +3,8 @@
 {% block subforum %}<h2><a href="/">Home</a> &gt; <a href="/cat/{{ t.parent.parent.id }}/">{{ t.parent.parent.name }}</a> &gt; <a href="/sub_cat/{{ t.parent.id }}/">{{ t.parent.name }}</a> &gt; {{ t.title }}</h2>{% endblock %}
 {% block content %}
 <table class="forum_data">
-	<tr>
-		<td colspan="2" class="topic_title"><h3>{{ t.title }}</h3></td>
+	<tr class="topic_title">
+		<td colspan="2"><h3>{{ t.title }}</h3></td>
 	</tr>
 	<tr>
 		<td class="user_data">
@@ -16,7 +16,7 @@
 					<td>{{ t.date }}</td>
 				</tr>
 				<tr>
-					<td>Posts: {{ p }}</td>
+					<td>Posts: {{ c }}</td>
 				</tr>
 			</table>
 		</td>
@@ -34,4 +34,69 @@
 		</td>
 	</tr>
 </table>
+<br />
+<br />
+{% if posts %}
+	{% for p in posts %}
+	<div id="{{ p.id }}"><table class="forum_data">
+		<tr class="topic_title">
+			<td colspan="2"><h3>{{ p.title }}</h3></td>
+		</tr>
+		<tr>
+			<td class="user_data">
+				<table>
+					<tr>
+						<td>{{ p.author.username }}</td>
+					</tr>
+					<tr>
+						<td>{{ p.date }}</td>
+					</tr>
+					<tr>
+						<td>Posts: {{ c }}</td>
+					</tr>
+				</table>
+			</td>
+			<td class="post_message">
+				<table>
+					<tr><td>{{ p.post|safe|linebreaks  }}</td></tr>
+					<tr>
+						<td>
+							{% if u %}
+							-<a href="/edit_post/{{ p.id }}/">Edit Post</a>
+							{% endif %}
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table></div>
+	<br />
+	{% endfor %}
+<div class="pagination">
+	<span class="step-links">
+		{% if posts.has_previous %}
+			<a href="?page={{ posts.previous_page_number }}">&lt;</a>
+		{% endif %}
+		<span class="current">
+			{{ posts.number }} of {{ posts.paginator.num_pages }}
+		</span>
+		{% if posts.has_next %}
+			<a href="?page={{ posts.next_page_number }}">&gt;</a>
+		{% endif %}
+	</span>
+</div>
+{% endif %}
+<br />
+<br />
+<button id="toggle_quick_reply">Post Reply</button>
+<br />
+<br />
+<div id="post_reply" class="reply">
+	<form action="" method="POST">
+		<p><textarea name="reply"></textarea></p>
+		<p>
+			{% csrf_token %}<button type="submit">Reply</button>
+		</p>
+	</form>
+</div>
 {% endblock %}

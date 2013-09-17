@@ -49,3 +49,6 @@ class Post(models.Model):
 
 	def __unicode__(self):
 		return unicode(self.title)
+
+	class Meta:
+		ordering = ['id']

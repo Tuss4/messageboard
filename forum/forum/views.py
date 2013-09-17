@@ -1,6 +1,9 @@
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render
 from structure.models import Category, SubCategory
+from django.contrib import auth
+from django.contrib.auth.models import User
+
 
 def main(request):
 	context = {
@@ -8,3 +11,35 @@ def main(request):
 	"scats": SubCategory.objects.all()
 	}
 	return render(request, "list.html", context)
+
+
+def login(request):
+	if request.method == "POST":
+		user = request.POST.get('user')
+		passw = request.POST.get('pass')
+		user = auth.authenticate(username=user, password=passw)
+		if user is not None and user.is_active:
+			auth.login(request, user)
+			return HttpResponseRedirect('/')
+		else:
+			raise Http404()
+	return render(request, 'auth/login.html')
+
+
+def logout(request):
+	auth.logout(request)
+	return HttpResponseRedirect('/')
+
+
+def register(request):
+	u = User()
+	if request.method == "POST":
+		u.username = request.POST.get('user')
+		u.set_password(request.POST.get('pass'))
+		u.email = request.POST.get('email')
+		u.is_active = True
+		u.is_staff = False
+		u.is_superuser = False
+		u.save()
+		return HttpResponseRedirect('/login/')
+	return render(request, 'auth/register.html')
