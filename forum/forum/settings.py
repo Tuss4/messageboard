@@ -2,10 +2,10 @@ import socket
 import os.path
 import dj_database_url
 # Django settings for forum project.
-if socket.gethostname() == "DreamMachine":
+if socket.gethostname() == "DreamMachine" or socket.gethostname() =="linuxmint":
     DEBUG = True
 else:
-    Debug = False
+    DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
