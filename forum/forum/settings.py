@@ -1,6 +1,7 @@
 import socket
 import os.path
-import dj_database_url
+if socket.gethostname() != 'DreamMachine':
+    import dj_database_url
 # Django settings for forum project.
 if socket.gethostname() == "DreamMachine" or socket.gethostname() =="linuxmint":
     DEBUG = True
@@ -37,7 +38,6 @@ elif socket.gethostname() == 'DreamMachine':
         'PORT': '',                      # Set to empty string for default.
         }
     }
-elif 
 else:
     DATABASES = {'default': dj_database_url.config()}
 # Hosts/domain names that are valid for this site; required if DEBUG is False
