@@ -52,7 +52,7 @@
 						<td>{{ p.date }}</td>
 					</tr>
 					<tr>
-						<td>Posts: {{ mc }}</td>
+						<td>Posts: {% for m in mc %}{% ifequal m.user p.author %}{{ m.count }}{% endifequal %}{% endfor %}</td>
 					</tr>
 				</table>
 			</td>

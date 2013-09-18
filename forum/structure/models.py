@@ -52,3 +52,11 @@ class Post(models.Model):
 
 	class Meta:
 		ordering = ['id']
+
+
+class PostCount(models.Model):
+	user = models.ForeignKey(User)
+	count = models.IntegerField()
+
+	def __unicode__(self):
+		return unicode("%s: %s" % (self.user, self.count))

@@ -1,6 +1,6 @@
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from structure.models import Category, SubCategory, Topic, Post
+from structure.models import Category, SubCategory, Topic, Post, PostCount
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import datetime
@@ -31,15 +31,19 @@ def view_subcat(request, id):
 def add_topic(request, id):
 	sub = SubCategory.objects.get(id=id)
 	t = Topic()
-	if request.method == "POST":
-		t.title = request.POST.get('title')
-		t.message = request.POST.get('message')
-		t.description = request.POST.get('message')[0:40] + '...'
-		t.author = User.objects.get(username=request.user.username)
-		t.date = datetime.datetime.now()
-		t.parent = sub
-		t.save()
-		return HttpResponseRedirect("/topic/"+str(t.id))
+	if request.user.is_authenticated:
+		if request.method == "POST":
+			t.title = request.POST.get('title')
+			t.message = request.POST.get('message')
+			t.description = request.POST.get('message')[0:40] + '...'
+			t.author = User.objects.get(username=request.user.username)
+			t.date = datetime.datetime.now()
+			t.parent = sub
+			t.save()
+			c = PostCount.objects.get(user=t.author)
+			c.count += 1
+			c.save()
+			return HttpResponseRedirect("/topic/"+str(t.id))
 	context = {
 		"user": request.user,
 		"sub": sub
@@ -50,11 +54,6 @@ def add_topic(request, id):
 def view_topic(request, id):
 	author = Topic.objects.get(id=id).author
 	count = int(Topic.objects.filter(author=author).count()) + int(Post.objects.filter(author=author).count())
-	member = ""
-	u_count = ""
-	if request.user.is_authenticated:
-		member = User.objects.get(username=request.user.username)
-		u_count = int(Topic.objects.filter(author=member).count()) + int(Post.objects.filter(author=member).count())
 	u = False
 	if request.user == Topic.objects.get(id=id).author or request.user.is_superuser:
 		u = True
@@ -70,20 +69,24 @@ def view_topic(request, id):
 		post_list = posts.page(paginator.num_pages)
 	spec_page = int(topic_posts.count())/10
 	p = Post()
-	if request.method == "POST":
-		p.post = request.POST.get('reply')
-		p.title = "Re: " + Topic.objects.get(id=id).title
-		p.date = datetime.datetime.now()
-		p.author = User.objects.get(username=request.user.username)
-		p.topic = Topic.objects.get(id=id)
-		p.save()
-		return HttpResponseRedirect('/topic/'+str(p.topic.id)+'/?page='+str(spec_page+1)+'#'+str(p.id))
+	if request.user.is_authenticated:
+		if request.method == "POST":
+			p.post = request.POST.get('reply')
+			p.title = "Re: " + Topic.objects.get(id=id).title
+			p.date = datetime.datetime.now()
+			p.author = User.objects.get(username=request.user.username)
+			p.topic = Topic.objects.get(id=id)
+			p.save()
+			c = PostCount.objects.get(user=p.author)
+			c.count += 1
+			c.save()
+			return HttpResponseRedirect('/topic/'+str(p.topic.id)+'/?page='+str(spec_page+1)+'#'+str(p.id))
 	context = {
 		"user": request.user,
 		"posts": post_list,
 		"u": u,
 		"c": count,
-		"mc": u_count,
+		"mc": PostCount.objects.all(),
 		"t": Topic.objects.get(id=id)
 	}
 	return render(request, "topics/view_topic.html", context)
