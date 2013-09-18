@@ -4,21 +4,23 @@
 <table class="forum_data">
 	{% for c in cats %}
 	<tr>
-		<td><fieldset>
-			<legend><h2>{{ c.name }}</h2></legend>
-			<table>
+		<td class="cat"><a href="/cat/{{ c.id }}/">{{ c.name }}</a></td>
+	</tr>
+	<tr>
+		<td>
+			<table class="inner">
 				{% for s in scats %}
 					{% ifequal s.parent c %}
-					<tr>
-						<td><h3><a href="/sub_cat/{{ s.id }}/">{{ s.name }}</a></h3></td>
+					<tr class="sub">
+						<td><a href="/sub_cat/{{ s.id }}/">{{ s.name }}</a></td>
 					</tr>
-					<tr>
+					<tr class="desc">
 						<td>{{ s.description }}</td>
 					</tr>
 					{% endifequal %}
 				{% endfor %}
 			</table>
-		</fieldset></td>
+		</td>
 	</tr>
 	{% endfor %}
 </table>

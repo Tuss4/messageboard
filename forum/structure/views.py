@@ -48,7 +48,13 @@ def add_topic(request, id):
 
 
 def view_topic(request, id):
-	count = int(Topic.objects.filter(author=request.user).count()) + int(Post.objects.filter(author=request.user).count())
+	author = Topic.objects.get(id=id).author
+	count = int(Topic.objects.filter(author=author).count()) + int(Post.objects.filter(author=author).count())
+	member = ""
+	u_count = ""
+	if request.user.is_authenticated:
+		member = User.objects.get(username=request.user.username)
+		u_count = int(Topic.objects.filter(author=member).count()) + int(Post.objects.filter(author=member).count())
 	u = False
 	if request.user == Topic.objects.get(id=id).author or request.user.is_superuser():
 		u = True
@@ -62,6 +68,7 @@ def view_topic(request, id):
 		post_list = posts.page(1)
 	except EmptyPage:
 		post_list = posts.page(paginator.num_pages)
+	spec_page = int(topic_posts.count())/10
 	p = Post()
 	if request.method == "POST":
 		p.post = request.POST.get('reply')
@@ -70,12 +77,13 @@ def view_topic(request, id):
 		p.author = User.objects.get(username=request.user.username)
 		p.topic = Topic.objects.get(id=id)
 		p.save()
-		return HttpResponseRedirect('/topic/'+str(p.topic.id)+'/#'+str(p.id))
+		return HttpResponseRedirect('/topic/'+str(p.topic.id)+'/?page='+str(spec_page+1)+'#'+str(p.id))
 	context = {
 		"user": request.user,
 		"posts": post_list,
 		"u": u,
 		"c": count,
+		"mc": u_count,
 		"t": Topic.objects.get(id=id)
 	}
 	return render(request, "topics/view_topic.html", context)

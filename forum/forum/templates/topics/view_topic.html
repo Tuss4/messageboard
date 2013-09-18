@@ -4,7 +4,7 @@
 {% block content %}
 <table class="forum_data">
 	<tr class="topic_title">
-		<td colspan="2"><h3>{{ t.title }}</h3></td>
+		<td colspan="2">{{ t.title }}</td>
 	</tr>
 	<tr>
 		<td class="user_data">
@@ -40,7 +40,7 @@
 	{% for p in posts %}
 	<div id="{{ p.id }}"><table class="forum_data">
 		<tr class="topic_title">
-			<td colspan="2"><h3>{{ p.title }}</h3></td>
+			<td colspan="2">{{ p.title }}</td>
 		</tr>
 		<tr>
 			<td class="user_data">
@@ -52,7 +52,7 @@
 						<td>{{ p.date }}</td>
 					</tr>
 					<tr>
-						<td>Posts: {{ c }}</td>
+						<td>Posts: {{ mc }}</td>
 					</tr>
 				</table>
 			</td>

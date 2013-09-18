@@ -10,13 +10,15 @@
 	</head>
 	<body>
 		<div id="header">
-			<h1><a href="/">Tuss4 Forum</a></h1>
+		<ul>
+			<li><a href="/">Tuss4 Forum</a></li>
 			{% if user.is_authenticated %}
-				<p><a href="/logout/">Logout</a></p>
+				<li><a href="/logout/">Logout</a></li>
 			{% else %}
-				<p><a href="/login/">Login</a></p>
-				<p><a href="/register/">Register</a></p>
+				<li><a href="/login/">Login</a></li>
+				<li><a href="/register/">Register</a></li>
 			{% endif %}
+		</ul>
 		</div>
 		<div id="sub_forum">
 			{% block subforum %}{% endblock %}

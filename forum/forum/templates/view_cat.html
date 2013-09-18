@@ -2,17 +2,23 @@
 {% block subtitle %} &gt; {{ cat.name }} {% endblock %}
 {% block subforum %}<h2> <a href="/">Home</a> &gt; {{ cat.name }} </h2>{% endblock %}
 {% block content %}
-<fieldset>
-	<legend><h2>{{ cat.name }}</h2></legend>
-	<table>
-		{% for s in scat %}
-			<tr>
-				<td><h3><a href="/sub_cat/{{ s.id }}/">{{ s.name }}</a></h3></td>
-			</tr>
-			<tr>
-				<td>{{ s.description }}</td>
-			</tr>
-		{% endfor %}
-	</table>
-</fieldset>
+<table class="forum_data">
+	<tr>
+		<td class="cat"><a href="/cat/{{ cat.id }}/">{{ cat.name }}</a></td>
+	</tr>
+	<tr>
+		<td>
+			<table class="inner">
+				{% for s in scat %}
+					<tr class="sub">
+						<td><a href="/sub_cat/{{ s.id }}/">{{ s.name }}</a></td>
+					</tr>
+					<tr class="desc">
+						<td>{{ s.description }}</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</td>
+	</tr>
+</table>
 {% endblock %}

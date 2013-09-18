@@ -2,21 +2,18 @@
 {% block subtitle %} &gt; {{ sub.parent.name }} &gt; {{ sub.name }}{% endblock %}
 {% block subforum %}<h2><a href="/">Home</a> &gt;<a href="/cat/{{ sub.parent.id }}/">{{ sub.parent.name }}</a> &gt; {{ sub.name }}</h2>{% endblock %}
 {% block content %}
-<fieldset>
-	<legend><h3>Topics</h3></legend>
-	<table class="forum_data">
-		<tr>
-			<th>Topic &amp; Description</th>
-			<th>Author</th>
-		</tr>
-		{% for t in topics %}
-		<tr>
-			<td><a href="/topic/{{ t.id }}/">{{ t.title }}</a>: {{ t.description|safe }}</td>
-			<td>{{ t.author.username }}</td>
-		</tr>
-		{% endfor %}
-	</table>
-</fieldset>
+<table class="forum_data">
+	<tr class="topic_title">
+		<th>Topic &amp; Description</th>
+		<th>Author</th>
+	</tr>
+	{% for t in topics %}
+	<tr class="inner">
+		<td class="sub" title="{{ t.description|safe }}"><a href="/topic/{{ t.id }}/">{{ t.title }}</a></td>
+		<td class="sub">{{ t.author.username }}</td>
+	</tr>
+	{% endfor %}
+</table>
 {% if u %}
 <p><a href="/add_topic/{{ sub.id }}/">Add New Topic</a></p>
 {% endif %}
