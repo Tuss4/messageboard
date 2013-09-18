@@ -56,7 +56,7 @@ def view_topic(request, id):
 		member = User.objects.get(username=request.user.username)
 		u_count = int(Topic.objects.filter(author=member).count()) + int(Post.objects.filter(author=member).count())
 	u = False
-	if request.user == Topic.objects.get(id=id).author or request.user.is_superuser():
+	if request.user == Topic.objects.get(id=id).author or request.user.is_superuser:
 		u = True
 	topic_posts = Post.objects.filter(topic=id)
 	posts = Paginator(topic_posts, 10)
