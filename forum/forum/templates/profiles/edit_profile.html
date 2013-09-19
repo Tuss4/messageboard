@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block subtitle %} &gt; Home &gt; Edit Profile {% endblock %}
+{% block subforum %}<h2><a href="/">Home</a> &gt; Edit Profile</h2>{% endblock %}
+{% block content %}
+<form action="" method="POST">
+	<table class="forum_data">
+		<tr>
+			<td><label for="age">Age:</label></td>
+			<td><input id="age" name="age" type="number" value="{{ m.age }}"/></td>
+		</tr>
+		<tr>
+			<td><label for="gender">Gender:</label></td>
+			<td><select id="gender" name="gender">
+				{% for i in g %}<option value="{{ i.id }}" {% ifequal i m.gender %}selected="selected"{% endifequal %}>{{ i.sexe }}</option>{% endfor %}
+			</select></td>
+		</tr>
+		<tr>
+			<td><label for="location">Location:</label></td>
+			<td><input id="location" name="location" type="text" value="{{ m.location }}" /></td>
+		</tr>
+		<tr>
+			<td><label for="about">About:</label></td>
+			<td><textarea id="about" name="about">{{ m.about|safe|linebreaks }}</textarea></td>
+		</tr>
+		<tr>
+			<td><label for="signature">Signature:</label></td>
+			<td><textarea id="signature" name="signature">{{ m.signature|safe|linebreaks }}</textarea></td>
+		</tr>
+	</table>
+	{% csrf_token %}
+	<p><button type="reset">Reset</button> <button type="submit">Save Profile</button></p>
+</form>
+{% endblock %}

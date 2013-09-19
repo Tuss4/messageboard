@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block subtitle %} &gt; Home &gt; {{ m.member.username }}'s Profile {% endblock %}
+{% block subforum %}<h2><a href="/">Home</a> &gt; {{ m.member.username }}'s Profile</h2>{% endblock %}
+{% block content %}
+<table class="forum_data">
+		<tr>
+			<td>Age:</td>
+			<td>{{ m.age }}</td>
+		</tr>
+		<tr>
+			<td>Gender:</td>
+			<td>{{ m.gender.sexe }}</td>
+		</tr>
+		<tr>
+			<td>Location:</td>
+			<td>{{ m.location }}</td>
+		</tr>
+		<tr>
+			<td>About:</td>
+			<td>{{ m.about|safe|linebreaks }}</td>
+		</tr>
+		<tr>
+			<td>Signature:</td>
+			<td>{{ m.signature|safe|linebreaks }}</td>
+		</tr>
+	</table>
+	{% if user.is_authenticated %}{% ifequal user m.member %}<p><a href="/edit_profile/{{ m.member.id }}/">Edit Profile</a></p>{% endifequal %}{% endif %}
+{% endblock %}

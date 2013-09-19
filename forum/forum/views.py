@@ -1,12 +1,14 @@
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render
 from structure.models import Category, SubCategory, PostCount
+from profiles.models import Profile
 from django.contrib import auth
 from django.contrib.auth.models import User
 
 
 def main(request):
 	context = {
+	"p": Profile.objects.all(),
 	"cats": Category.objects.all(),
 	"scats": SubCategory.objects.all()
 	}
@@ -34,6 +36,7 @@ def logout(request):
 def register(request):
 	u = User()
 	c = PostCount()
+	p = Profile()
 	if request.method == "POST":
 		u.username = request.POST.get('user')
 		u.set_password(request.POST.get('pass'))
@@ -45,5 +48,7 @@ def register(request):
 		c.user = u
 		c.count = 0
 		c.save()
+		p.member = u
+		p.save()
 		return HttpResponseRedirect('/login/')
 	return render(request, 'auth/register.html')

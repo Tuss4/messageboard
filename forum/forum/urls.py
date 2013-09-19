@@ -23,6 +23,9 @@ urlpatterns = patterns('',
 	url(r'^logout/$', 'forum.views.logout'),
 	url(r'^register/$', 'forum.views.register'),
 	
+	#Profile URLs
+	url(r'^edit_profile/(\d+)/$','profiles.views.edit_profile'),
+	url(r'^view_profile/(\d+)/$','profiles.views.view_profile'),
     # Examples:
     # url(r'^$', 'forum.views.home', name='home'),
     # url(r'^forum/', include('forum.foo.urls')),

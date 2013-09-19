@@ -13,6 +13,7 @@
 		<ul>
 			<li><a href="/">Tuss4 Forum</a></li>
 			{% if user.is_authenticated %}
+				<li>{% for q in p %}{% ifequal user q.member %}<a href="/view_profile/{{ q.member.id }}/">{% endifequal %}{% endfor %}Profile</a></li>
 				<li><a href="/logout/">Logout</a></li>
 			{% else %}
 				<li><a href="/login/">Login</a></li>

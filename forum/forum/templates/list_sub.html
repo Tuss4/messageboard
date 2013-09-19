@@ -10,7 +10,7 @@
 	{% for t in topics %}
 	<tr class="inner">
 		<td class="sub" title="{{ t.description|safe }}"><a href="/topic/{{ t.id }}/">{{ t.title }}</a></td>
-		<td class="sub">{{ t.author.username }}</td>
+		<td class="sub"><a href="/view_profile/{{ t.author.id }}/">{{ t.author.username }}</a></td>
 	</tr>
 	{% endfor %}
 </table>

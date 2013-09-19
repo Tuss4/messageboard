@@ -1,6 +1,7 @@
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from structure.models import Category, SubCategory, Topic, Post, PostCount
+from profiles.models import Profile
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import datetime
@@ -9,6 +10,7 @@ import datetime
 def view_cat(request, id):
 	cat = Category.objects.get(id=id)
 	context = {
+		"p": Profile.objects.all(),
 		"user": request.user,
 		"cat": cat,
 		"scat": SubCategory.objects.filter(parent=id)
@@ -19,6 +21,7 @@ def view_cat(request, id):
 def view_subcat(request, id):
 	sub = SubCategory.objects.get(id=id)
 	context = {
+		"p": Profile.objects.all(),
 		"user": request.user,
 		"sub": sub,
 		"topics": Topic.objects.filter(parent=id),
@@ -45,6 +48,7 @@ def add_topic(request, id):
 			c.save()
 			return HttpResponseRedirect("/topic/"+str(t.id))
 	context = {
+		"p": Profile.objects.all(),
 		"user": request.user,
 		"sub": sub
 	}
@@ -82,6 +86,7 @@ def view_topic(request, id):
 			c.save()
 			return HttpResponseRedirect('/topic/'+str(p.topic.id)+'/?page='+str(spec_page+1)+'#'+str(p.id))
 	context = {
+		"p": Profile.objects.all(),
 		"user": request.user,
 		"posts": post_list,
 		"u": u,
@@ -101,6 +106,7 @@ def edit_topic(request, id):
 		t.save()
 		return HttpResponseRedirect("/topic/"+id)
 	context = {
+		"p": Profile.objects.all(),
 		"user": request.user,
 		"t": t
 	}
@@ -115,7 +121,8 @@ def edit_post(request, id):
 		p.save
 		return HttpResponseRedirect('/topic/'+str(p.topic.id)+'/#'+str(p.id))
 	context = {
+		"p": Profile.objects.all(),
 		"user": request.user,
-		"p": p
+		"post": p
 	}
 	return render(request, 'posts/edit_post.html', context)

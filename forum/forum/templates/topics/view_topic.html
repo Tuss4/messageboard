@@ -10,7 +10,7 @@
 		<td class="user_data">
 			<table>
 				<tr>
-					<td>{{ t.author.username }}</td>
+					<td><a href="/view_profile/{{ t.author.id }}/">{{ t.author.username }}</a></td>
 				</tr>
 				<tr>
 					<td>{{ t.date }}</td>
@@ -46,7 +46,7 @@
 			<td class="user_data">
 				<table>
 					<tr>
-						<td>{{ p.author.username }}</td>
+						<td><a href="/view_profile/{{ p.author.id }}/">{{ p.author.username }}</a></td>
 					</tr>
 					<tr>
 						<td>{{ p.date }}</td>
