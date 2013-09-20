@@ -94,10 +94,10 @@
 {% endif %}
 <br />
 <br />
+{% if user.is_authenticated %}
 <button id="toggle_quick_reply">Post Reply</button>
 <br />
 <br />
-{% if user.is_authenticated %}
 <div id="post_reply" class="reply">
 	<form action="" method="POST">
 		<p><textarea name="reply"></textarea></p>
