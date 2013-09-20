@@ -13,6 +13,9 @@
 					<td><a href="/view_profile/{{ t.author.id }}/">{{ t.author.username }}</a></td>
 				</tr>
 				<tr>
+					<td>{% for g in gs %}{% ifequal t.author g.member %}<img src="{{ g.gravatar }}?s=100" alt="{{ t.author.username }}" title="{{ t.author.username }}">{% endifequal %}{% endfor %}</td>
+				</tr>
+				<tr>
 					<td>{{ t.date }}</td>
 				</tr>
 				<tr>
@@ -47,6 +50,9 @@
 				<table>
 					<tr>
 						<td><a href="/view_profile/{{ p.author.id }}/">{{ p.author.username }}</a></td>
+					</tr>
+					<tr>
+					<td>{% for g in gs %}{% ifequal p.author g.member %}<img src="{{ g.gravatar }}?s=100" alt="{{ p.author.username }}" title="{{ p.author.username }}">{% endifequal %}{% endfor %}</td>
 					</tr>
 					<tr>
 						<td>{{ p.date }}</td>

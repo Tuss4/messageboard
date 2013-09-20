@@ -2,8 +2,39 @@
 {% block subtitle %} &gt; Home &gt; Edit Profile {% endblock %}
 {% block subforum %}<h2><a href="/">Home</a> &gt; Edit Profile</h2>{% endblock %}
 {% block content %}
+<script>
+	$(document).ready(function() {
+		$('#avatar').hide();
+		var form = $('#grav')
+		form.submit(function() {
+			$.ajax({
+				type: form.attr('method'),
+				url: form.attr('action'),
+				data: form.serialize(),
+				success: function(response) {
+					$('#avatar').html("<img src='"+response+"?s=100' alt='{{ m.member.username }}' title='{{ m.member.username }}' />");
+					$('#avatar').show();
+					$('#grav').hide();
+				},
+				error: function(){
+					alert("Something ain't right!");
+				}
+			});
+			return false;
+		});
+	});
+</script>
+<div id="avatar"></div>
 <form action="" method="POST">
 	<table class="forum_data">
+		{% for a in as %}
+		{% ifequal a.member m.member %}
+		<tr>
+			<td>Gravatar:</td>
+			<td><img src="{{ a.gravatar }}?s=200" alt="{{ m.member.username }}" title="{{ m.member.username }}" /></td>
+		</tr>
+		{% endifequal %}
+		{% endfor %}
 		<tr>
 			<td><label for="age">Age:</label></td>
 			<td><input id="age" name="age" type="number" value="{{ m.age }}"/></td>
@@ -30,4 +61,20 @@
 	{% csrf_token %}
 	<p><button type="reset">Reset</button> <button type="submit">Save Profile</button></p>
 </form>
+<br />
+<br />
+<form id="grav" action="/add_grav/{{ m.member.id }}/" method="POST">
+	<table class="forum_data">
+		<tr>
+			<td><label for="email">Gravatar email:</label></td>
+			<td><input id="email" name="email" type="email" placeholder="you@example.com" /></td>
+		</tr>
+	</table>
+	<br />
+	<br />
+	{% csrf_token %}
+	<button type="submit">Get Your Gravatar</button>
+</form>
+<br />
+<br />
 {% endblock %}

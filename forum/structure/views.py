@@ -2,6 +2,7 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from structure.models import Category, SubCategory, Topic, Post, PostCount
 from profiles.models import Profile
+from avatar.models import Gravatar
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import datetime
@@ -92,7 +93,8 @@ def view_topic(request, id):
 		"u": u,
 		"c": count,
 		"mc": PostCount.objects.all(),
-		"t": Topic.objects.get(id=id)
+		"t": Topic.objects.get(id=id),
+		"gs": Gravatar.objects.all(),
 	}
 	return render(request, "topics/view_topic.html", context)
 

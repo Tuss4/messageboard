@@ -26,6 +26,7 @@ urlpatterns = patterns('',
 	#Profile URLs
 	url(r'^edit_profile/(\d+)/$','profiles.views.edit_profile'),
 	url(r'^view_profile/(\d+)/$','profiles.views.view_profile'),
+	url(r'^add_grav/(\d+)/$', 'avatar.views.add_grav'),
     # Examples:
     # url(r'^$', 'forum.views.home', name='home'),
     # url(r'^forum/', include('forum.foo.urls')),

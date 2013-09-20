@@ -3,6 +3,14 @@
 {% block subforum %}<h2><a href="/">Home</a> &gt; {{ m.member.username }}'s Profile</h2>{% endblock %}
 {% block content %}
 <table class="forum_data">
+		{% for a in as %}
+		{% ifequal a.member m.member %}
+		<tr>
+			<td>Gravatar:</td>
+			<td><img src="{{ a.gravatar }}?s=200" alt="{{ m.member.username }}" title="{{ m.member.username }}" /></td>
+		</tr>
+		{% endifequal %}
+		{% endfor %}
 		<tr>
 			<td>Age:</td>
 			<td>{{ m.age }}</td>
