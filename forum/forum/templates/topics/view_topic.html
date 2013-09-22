@@ -4,35 +4,17 @@
 {% block content %}
 <table class="table table-bordered">
 	<tr>
-		<td colspan="2">{{ t.title }}</td>
-	</tr>
-	<tr>
 		<td>
-			<table class="table">
-				<tr>
-					<td><a href="/view_profile/{{ t.author.id }}/">{{ t.author.username }}</a></td>
-				</tr>
-				<tr>
-					<td>{% for g in gs %}{% ifequal t.author g.member %}<img src="{{ g.gravatar }}?s=100" alt="{{ t.author.username }}" title="{{ t.author.username }}">{% endifequal %}{% endfor %}</td>
-				</tr>
-				<tr>
-					<td>{{ t.date }}</td>
-				</tr>
-				<tr>
-					<td>Posts: {{ c }}</td>
-				</tr>
-			</table>
-		</td>
-		<td>
-			<!-- message stuff -->
 			<div class="row">
-				<div class="col-md-12">{{ t.message|safe|linebreaks }}</div>
+				<div class="col-md-4">
+					<p><a href="/view_profile/{{ t.author.id }}/">{{ t.author.username }}</a></p>
+					<p>{% for g in gs %}{% ifequal t.author g.member %}<img src="{{ g.gravatar }}?s=100" alt="{{ t.author.username }}" title="{{ t.author.username }}">{% endifequal %}{% endfor %}</p>
+					<p>{{ t.date }}</p>
+					<p>Posts: {{ c }}</p>
+				</div>
+				<div class="col-md-8"><h4>{{ t.title }}</h4>{{ t.message|safe|linebreaks }}<br />{% if u %}-<a href="/edit_topic/{{ t.id }}/">Edit Topic</a>
+			{% endif %}</div>
 			</div>
-			{% if u %}
-			<div class="row">
-				<div class="col-md-12">-<a href="/edit_topic/{{ t.id }}/">Edit Topic</a></div>
-			</div>
-			{% endif %}
 		</td>
 	</tr>
 </table>
@@ -42,39 +24,20 @@
 	{% for p in posts %}
 	<div id="{{ p.id }}"><table class="table table-bordered">
 		<tr>
-			<td colspan="2">{{ p.title }}</td>
-		</tr>
-		<tr>
-			<td>
-				<table class="table">
-					<tr>
-						<td><a href="/view_profile/{{ p.author.id }}/">{{ p.author.username }}</a></td>
-					</tr>
-					<tr>
-					<td>{% for g in gs %}{% ifequal p.author g.member %}<img src="{{ g.gravatar }}?s=100" alt="{{ p.author.username }}" title="{{ p.author.username }}">{% endifequal %}{% endfor %}</td>
-					</tr>
-					<tr>
-						<td>{{ p.date }}</td>
-					</tr>
-					<tr>
-						<td>Posts: {% for m in mc %}{% ifequal m.user p.author %}{{ m.count }}{% endifequal %}{% endfor %}</td>
-					</tr>
-				</table>
-			</td>
-			<td>
-				<!-- message stuff -->
-				<div class="row">
-					<div class="col-md-12">{{ p.post|safe|linebreaks }}</div>
+		<td>
+			<div class="row">
+				<div class="col-md-4">
+					<p><a href="/view_profile/{{ p.author.id }}/">{{ p.author.username }}</a></p>
+					<p>{% for g in gs %}{% ifequal p.author g.member %}<img src="{{ g.gravatar }}?s=100" alt="{{ p.author.username }}" title="{{ p.author.username }}">{% endifequal %}{% endfor %}</p>
+					<p>{{ p.date }}</p>
+					<p>Posts: {% for m in mc %}{% ifequal m.user p.author %}{{ m.count }}{% endifequal %}{% endfor %}</p>
 				</div>
-				{% if u %}
-				<div class="row">
-					<div class="col-md-12">-<a href="/edit_post/{{ p.id }}/">Edit Post</a></div>
-				</div>
-				{% endif %}
-			</td>
+				<div class="col-md-8"><h4>{{ p.title }}</h4>{{ p.post|safe|linebreaks }}<br />{% ifequal user p.author %}-<a href="/edit_post/{{ p.id }}/">Edit Post</a>
+				{% endifequal %}</div>
+			</div>
+		</td>
 		</tr>
-	</table></div>
-	<br />
+	</table></div><br />
 	{% endfor %}
 <div class="pagination">
 	<span class="step-links">
