@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block subtitle %} &gt; Home &gt; {{ m.member.username }}'s Profile {% endblock %}
-{% block subforum %}<h2><a href="/">Home</a> &gt; {{ m.member.username }}'s Profile</h2>{% endblock %}
+{% block subforum %}<ol class="breadcrumb"><li><a href="/">Home</a></li> <li class="active">{{ m.member.username }}'s Profile</li></ol>{% endblock %}
 {% block content %}
-<table class="forum_data">
+<table class="table table-bordered">
 		{% for a in as %}
 		{% ifequal a.member m.member %}
 		<tr>

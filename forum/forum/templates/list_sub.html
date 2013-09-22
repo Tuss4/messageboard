@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 {% block subtitle %} &gt; {{ sub.parent.name }} &gt; {{ sub.name }}{% endblock %}
-{% block subforum %}<h2><a href="/">Home</a> &gt;<a href="/cat/{{ sub.parent.id }}/">{{ sub.parent.name }}</a> &gt; {{ sub.name }}</h2>{% endblock %}
+{% block subforum %}<ol class="breadcrumb"><li><a href="/">Home</a></li><li><a href="/cat/{{ sub.parent.id }}/">{{ sub.parent.name }}</a></li><li class="active">{{ sub.name }}</li></ol>{% endblock %}
 {% block content %}
-<table class="forum_data">
-	<tr class="topic_title">
+<table class="table table-hover table-bordered">
+	<tr>
 		<th>Topic &amp; Description</th>
 		<th>Author</th>
 	</tr>
 	{% for t in topics %}
-	<tr class="inner">
-		<td class="sub" title="{{ t.description|safe }}"><a href="/topic/{{ t.id }}/">{{ t.title }}</a></td>
-		<td class="sub"><a href="/view_profile/{{ t.author.id }}/">{{ t.author.username }}</a></td>
+	<tr>
+		<td title="{{ t.description|safe }}"><a href="/topic/{{ t.id }}/">{{ t.title }}</a></td>
+		<td><a href="/view_profile/{{ t.author.id }}/">{{ t.author.username }}</a></td>
 	</tr>
 	{% endfor %}
 </table>

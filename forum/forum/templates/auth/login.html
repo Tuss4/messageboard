@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 {% block subtitle %} &gt; Login {% endblock %}
-{% block subforum %}<h2>Home &gt; Login</h2>{% endblock %}
+{% block subforum %}<ol class="breadcrumb"><li><a href="/">Home</a></li> <li class="active">Login</li></ol>{% endblock %}
 {% block content %}
-<form action="" method="POST">
-	<table class="forum_data">
-		<tr>
-			<td><label for="user">Username: </label></td><td><input id="user" name="user" type="text" /></td>
-		</tr>
-		<tr>
-			<td><label for="pass">Password: </label></td><td><input id="pass" name="pass" type="password" /></td>
-		</tr>
-		{% csrf_token %}
-	</table>
+<div class="row">
+<div class="col-md-5">
+<form action="" method="POST" class="form-signin">
+	<h2 class="form-signin-heading">Please Login</h2>
+	<label for="user">Username: </label><input id="user" name="user" type="text" class="form-control" autofocus/>
+	<label for="pass">Password: </label><input id="pass" name="pass" type="password" class="form-control" />
+	{% csrf_token %}
 	<br />
-	<button type="submit">Login</button>
+	<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
 </form>
+</div>
+<div class="col-md-7"></div>
+</div>
 {% endblock %}

@@ -1,21 +1,21 @@
 {% extends "base.html" %}
 {% block subtitle %} &gt; Register {% endblock %}
-{% block subforum %}<h2>Home &gt; Register</h2>{% endblock %}
+{% block subforum %}<ol class="breadcrumb"><li><a href="/">Home</a></li><li class="active">Register</li></ol>{% endblock %}
 {% block content %}
 <form action="" method="POST">
-	<table class="forum_data">
+	<table class="table table-bordered">
 		<tr>
-			<td><label for="user" alt="Case Sensitive" title="Case Sensitive">Username (case sensitive): </label></td><td><input id="user" name="user" type="text" /></td>
+			<td><label for="user" alt="Case Sensitive" title="Case Sensitive">Username (case sensitive): </label></td><td><input class="form-control" id="user" name="user" type="text" /></td>
 		</tr>
 		<tr>
-			<td><label for="pass">Password: </label></td><td><input id="pass" name="pass" type="password" /></td>
+			<td><label for="pass">Password: </label></td><td><input class="form-control" id="pass" name="pass" type="password" /></td>
 		</tr>
 		<tr>
-			<td><label for="email">Email: </label></td><td><input id="email" name="email" type="text" /></td>
+			<td><label for="email">Email: </label></td><td><input class="form-control" id="email" name="email" type="text" placeholder="you@example.com" /></td>
 		</tr>
 		{% csrf_token %}
 	</table>
 	<br />
-	<button type="submit">Register</button>
+	<button type="submit" class="btn btn-default">Register</button>
 </form>
 {% endblock %}

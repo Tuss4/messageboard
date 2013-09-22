@@ -3,18 +3,16 @@
 {% block subforum %}<h2>Home &gt; {{ t.parent.parent.name }} &gt; {{ t.parent.name }} &gt; Edit Topic</h2>{% endblock %}
 {% block content %}
 <form action="" method="POST">
-<fieldset>
-	<legend><h3>Edit Topic</h3></legend>
-	<table class="forum_data">
+<h3>Edit Topic</h3>
+	<table class="table table-bordered">
 		<tr>
-			<th><label for="title">Title:</label></th><td><input id="title" name="title" type="text" value="{{ t.title }}" /></td>
+			<th><label for="title">Title:</label></th><td><input id="title" name="title" type="text" value="{{ t.title }}" class="form-control" /></td>
 		</tr>
 		<tr>
-			<td></td>
-			<td><textarea name="message">{{ t.message|safe|linebreaks }}</textarea></td>
+			<th><label for="message">Message:</label></th>
+			<td><textarea id="message" class="form-control" name="message">{{ t.message|safe|linebreaks }}</textarea></td>
 		</tr>
 	</table>
-	<p>{% csrf_token %}<button type="submit">Update Topic</button></p>
-</fieldset>
+	<p>{% csrf_token %}<button class="btn btn-default" type="submit">Update Topic</button></p>
 </form>
 {% endblock %}

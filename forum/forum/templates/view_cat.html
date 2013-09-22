@@ -1,24 +1,18 @@
 {% extends "base.html" %}
 {% block subtitle %} &gt; {{ cat.name }} {% endblock %}
-{% block subforum %}<h2> <a href="/">Home</a> &gt; {{ cat.name }} </h2>{% endblock %}
+{% block subforum %}<ol class="breadcrumb"><li><a href="/">Home</a></li><li class="active">{{ cat.name }}</li></ol>{% endblock %}
 {% block content %}
-<table class="forum_data">
+<table class="table table-striped table-bordered">
 	<tr>
-		<td class="cat"><a href="/cat/{{ cat.id }}/">{{ cat.name }}</a></td>
+		<td><a href="/cat/{{ cat.id }}/">{{ cat.name }}</a></td>
 	</tr>
-	<tr>
-		<td>
-			<table class="inner">
-				{% for s in scat %}
-					<tr class="sub">
-						<td><a href="/sub_cat/{{ s.id }}/">{{ s.name }}</a></td>
-					</tr>
-					<tr class="desc">
-						<td>{{ s.description }}</td>
-					</tr>
-				{% endfor %}
-			</table>
-		</td>
-	</tr>
+	{% for s in scat %}
+		<tr>
+			<td><a href="/sub_cat/{{ s.id }}/">{{ s.name }}</a></td>
+		</tr>
+		<tr>
+			<td>{{ s.description }}</td>
+		</tr>
+	{% endfor %}
 </table>
 {% endblock %}
