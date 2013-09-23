@@ -6,13 +6,13 @@
 	<tr>
 		<td>
 			<div class="row">
-				<div class="col-md-4">
-					<p><a href="/view_profile/{{ t.author.id }}/">{{ t.author.username }}</a></p>
+				<div class="col-md-3">
+					<p><span class="glyphicon glyphicon-user"></span> <a href="/view_profile/{{ t.author.id }}/">{{ t.author.username }}</a></p>
 					<p>{% for g in gs %}{% ifequal t.author g.member %}<img src="{{ g.gravatar }}?s=100" alt="{{ t.author.username }}" title="{{ t.author.username }}">{% endifequal %}{% endfor %}</p>
 					<p>{{ t.date }}</p>
 					<p>Posts: {{ c }}</p>
 				</div>
-				<div class="col-md-8"><h4>{{ t.title }}</h4>{{ t.message|safe|linebreaks }}<br />{% if u %}-<a href="/edit_topic/{{ t.id }}/">Edit Topic</a>
+				<div class="col-md-9"><h4>{{ t.title }}</h4>{{ t.message|safe|linebreaks }}<br />{% if u %}<span class="glyphicon glyphicon-edit"></span> <a href="/edit_topic/{{ t.id }}/">Edit Topic</a>
 			{% endif %}</div>
 			</div>
 		</td>
@@ -26,13 +26,13 @@
 		<tr>
 		<td>
 			<div class="row">
-				<div class="col-md-4">
-					<p><a href="/view_profile/{{ p.author.id }}/">{{ p.author.username }}</a></p>
+				<div class="col-md-3">
+					<p><span class="glyphicon glyphicon-user"></span> <a href="/view_profile/{{ p.author.id }}/">{{ p.author.username }}</a></p>
 					<p>{% for g in gs %}{% ifequal p.author g.member %}<img src="{{ g.gravatar }}?s=100" alt="{{ p.author.username }}" title="{{ p.author.username }}">{% endifequal %}{% endfor %}</p>
 					<p>{{ p.date }}</p>
 					<p>Posts: {% for m in mc %}{% ifequal m.user p.author %}{{ m.count }}{% endifequal %}{% endfor %}</p>
 				</div>
-				<div class="col-md-8"><h4>{{ p.title }}</h4>{{ p.post|safe|linebreaks }}<br />{% ifequal user p.author %}-<a href="/edit_post/{{ p.id }}/">Edit Post</a>
+				<div class="col-md-9"><h4>{{ p.title }}</h4>{{ p.post|safe|linebreaks }}<br />{% ifequal user p.author %}<span class="glyphicon glyphicon-edit"></span> <a href="/edit_post/{{ p.id }}/">Edit Post</a>
 				{% endifequal %}</div>
 			</div>
 		</td>

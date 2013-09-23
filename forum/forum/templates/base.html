@@ -23,13 +23,15 @@
 			<a class="navbar-brand" href="/">Tuss4 Forum</a>
 		</div>
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul class="nav navbar-nav">
 			{% if user.is_authenticated %}
-				<p class="navbar-text">{% for q in p %}{% ifequal user q.member %}<a href="/view_profile/{{ q.member.id }}/">{% endifequal %}{% endfor %}Profile</a></p>
-				<p class="navbar-text"><a href="/logout/">Logout</a></p>
+				<li>{% for q in p %}{% ifequal user q.member %}<a href="/view_profile/{{ q.member.id }}/">{% endifequal %}{% endfor %}Profile</a></li>
+				<li><a href="/logout/">Logout</a></li>
 			{% else %}
-				<p class="navbar-text"><a href="/login/">Login</a></p>
-				<p class="navbar-text"><a href="/register/">Register</a></p>
+				<li><a href="/login/">Login</a></p>
+				<li><a href="/register/">Register</a></li>
 			{% endif %}
+			</ul>
 		</div>
 		</nav>
 		<div class="container">
