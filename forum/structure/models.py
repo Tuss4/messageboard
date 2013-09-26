@@ -46,6 +46,7 @@ class Post(models.Model):
 	date = models.DateTimeField()
 	author = models.ForeignKey(User)
 	topic = models.ForeignKey(Topic)
+	cat = models.ForeignKey(SubCategory, null=True, blank=True)
 
 	def __unicode__(self):
 		return unicode(self.title)

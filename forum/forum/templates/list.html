@@ -2,17 +2,21 @@
 {% block subtitle %} &gt; Home {% endblock %}
 {% block content %}
 <table class="table table-bordered">
+	<tr>
+		<th>Categories</th>
+		<th>Topics</th>
+		<th>Posts</th>
+	</tr>
 	{% for c in cats %}
 	<tr>
-		<td class="cat"><a href="/cat/{{ c.id }}/">{{ c.name }}</a></td>
+		<td colspan="3" class="cat"><a href="/cat/{{ c.id }}/">{{ c.name }}</a></td>
 	</tr>
 	{% for s in scats %}
 		{% ifequal s.parent c %}
 		<tr>
-			<td><a href="/sub_cat/{{ s.id }}/">{{ s.name }}</a></td>
-		</tr>
-		<tr>
-			<td>{{ s.description }}</td>
+			<td><a href="/sub_cat/{{ s.id }}/">{{ s.name }}</a>: {{ s.description }}</td>
+			<td>{{ s.topic_set.count }}</td>
+			<td>{{ s.post_set.count }}</td>
 		</tr>
 		{% endifequal %}
 	{% endfor %}

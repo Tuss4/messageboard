@@ -1,6 +1,6 @@
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render
-from structure.models import Category, SubCategory, PostCount
+from structure.models import Category, SubCategory, PostCount, Topic, Post
 from profiles.models import Profile
 from django.contrib import auth
 from django.contrib.auth.models import User
@@ -10,7 +10,8 @@ def main(request):
 	context = {
 	"p": Profile.objects.all(),
 	"cats": Category.objects.all(),
-	"scats": SubCategory.objects.all()
+	"scats": SubCategory.objects.all(),
+	"post": Post.objects.all()
 	}
 	return render(request, "list.html", context)
 
