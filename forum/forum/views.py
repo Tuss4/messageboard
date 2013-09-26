@@ -11,7 +11,9 @@ def main(request):
 	"p": Profile.objects.all(),
 	"cats": Category.objects.all(),
 	"scats": SubCategory.objects.all(),
-	"post": Post.objects.all()
+	"post": Post.objects.all().count(),
+	"topic": Topic.objects.all().count(),
+	"userz": User.objects.all().count()
 	}
 	return render(request, "list.html", context)
 
