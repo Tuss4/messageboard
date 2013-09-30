@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block subtitle %} - My Repositories {% endblock %}
+{% block content %}
+<ul class="breadcrumb"><li>My Repositories</li></ul>
+<ul>
+{% for r in rl %}
+<li>{{ r|safe }}</li>
+{% endfor %}
+</ul>
+{% endblock %}
